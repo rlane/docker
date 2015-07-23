@@ -10,19 +10,19 @@ import (
 
 func TestNetworkModeTest(t *testing.T) {
 	networkModes := map[NetworkMode][]bool{
-		// private, bridge, host, container, none, default
-		"":                         {true, false, false, false, false, false},
-		"something:weird":          {true, false, false, false, false, false},
-		"bridge":                   {true, true, false, false, false, false},
-		DefaultDaemonNetworkMode(): {true, true, false, false, false, false},
-		"host":           {false, false, true, false, false, false},
-		"container:name": {false, false, false, true, false, false},
-		"none":           {true, false, false, false, true, false},
-		"default":        {true, false, false, false, false, true},
+		// private, bridge, host, container, none, default, named
+		"":                         {true, false, false, false, false, false, false},
+		"mynet":                    {true, false, false, false, false, false, true},
+		"bridge":                   {true, true, false, false, false, false, false},
+		DefaultDaemonNetworkMode(): {true, true, false, false, false, false, false},
+		"host":           {false, false, true, false, false, false, false},
+		"container:name": {false, false, false, true, false, false, false},
+		"none":           {true, false, false, false, true, false, false},
+		"default":        {true, false, false, false, false, true, false},
 	}
 	networkModeNames := map[NetworkMode]string{
 		"":                         "",
-		"something:weird":          "",
+		"mynet":                    "mynet",
 		"bridge":                   "bridge",
 		DefaultDaemonNetworkMode(): "bridge",
 		"host":           "host",

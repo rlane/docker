@@ -839,6 +839,8 @@ func (container *Container) AllocateNetwork() error {
 		}
 	} else if service != "" {
 		return fmt.Errorf("conflicting options: publishing a service and network mode")
+	} else if mode.IsNamed() {
+		networkDriver = controller.Config().Daemon.DefaultDriver
 	}
 
 	if runconfig.NetworkMode(networkDriver).IsBridge() && container.daemon.config.DisableBridge {

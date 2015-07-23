@@ -231,8 +231,8 @@ func TestNetHostname(t *testing.T) {
 	if _, _, _, err := parseRun([]string{"--net=container", "img", "cmd"}); err == nil || err.Error() != "--net: invalid net mode: invalid container format container:<name|id>" {
 		t.Fatalf("Expected error with --net=container, got : %v", err)
 	}
-	if _, _, _, err := parseRun([]string{"--net=weird", "img", "cmd"}); err == nil || err.Error() != "--net: invalid net mode: invalid --net: weird" {
-		t.Fatalf("Expected error with --net=weird, got: %s", err)
+	if _, _, _, err := parseRun([]string{"--net=mynet", "img", "cmd"}); err != nil {
+		t.Fatalf("Unexpected error: %s", err)
 	}
 }
 

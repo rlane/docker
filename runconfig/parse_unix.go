@@ -10,13 +10,10 @@ import (
 func parseNetMode(netMode string) (NetworkMode, error) {
 	parts := strings.Split(netMode, ":")
 	switch mode := parts[0]; mode {
-	case "default", "bridge", "none", "host":
 	case "container":
 		if len(parts) < 2 || parts[1] == "" {
 			return "", fmt.Errorf("invalid container format container:<name|id>")
 		}
-	default:
-		return "", fmt.Errorf("invalid --net: %s", netMode)
 	}
 	return NetworkMode(netMode), nil
 }

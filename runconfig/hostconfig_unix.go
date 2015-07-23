@@ -30,8 +30,9 @@ func (n NetworkMode) NetworkName() string {
 		return "none"
 	} else if n.IsDefault() {
 		return "default"
+	} else {
+		return string(n)
 	}
-	return ""
 }
 
 func (n NetworkMode) IsBridge() bool {
@@ -49,4 +50,9 @@ func (n NetworkMode) IsContainer() bool {
 
 func (n NetworkMode) IsNone() bool {
 	return n == "none"
+}
+
+func (n NetworkMode) IsNamed() bool {
+	return !n.IsBridge() && !n.IsHost() && !n.IsContainer() &&
+		!n.IsNone() && !n.IsDefault()
 }
